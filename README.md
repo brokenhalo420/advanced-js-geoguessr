@@ -2,5 +2,5 @@
 
 ## How to run
 
-1. Server: `yarn start` in `/server`
-2. Client: `yarn serve` in `/client`
+1. Server: `npm start` in `/server`
+2. Client: `npm serve` in `/client`
