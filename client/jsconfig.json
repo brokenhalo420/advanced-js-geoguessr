@@ -2,14 +2,11 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "outDir": "./dist",
-    "allowJs": false,
     "inlineSourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
   },
-  "include": ["src/**/**.ts"],
+  "include": ["src/**/**.js"],
   "exclude": ["node_modules"]
 }

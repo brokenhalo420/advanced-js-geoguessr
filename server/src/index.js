@@ -1,16 +1,14 @@
-import { NextFunction, Request, Response } from "express";
-
 const express = require("express");
 
 const app = express();
 
 app.use(express.json())
-app.use((_req: Request, res: Response, next: NextFunction) => {
+app.use((_req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
   });
 
-app.get("/api", (_req: Request, res: Response) => {
+app.get("/api", (_req, res) => {
   res.send({message: "HELLO FROM BACKEND!"});
 });
 

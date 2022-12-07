@@ -6,19 +6,19 @@ module.exports = (env) => {
   const mode = isProd ? 'production' : 'development';
   return {
     mode,
-    entry: path.resolve(__dirname, 'src', 'index.ts'),
+    entry: path.resolve(__dirname, 'src', 'index.js'),
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'app.bundle.js'
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx']
+      extensions: ['.js']
     },
     devtool: isProd ? undefined : 'source-map',
     module: {
       rules: [
         {
-          test: /environment.ts/,
+          test: /environment.js/,
           use: {
             loader: path.resolve(__dirname, 'loaders', 'environment-replacer')
           }
@@ -33,14 +33,6 @@ module.exports = (env) => {
             }
           ]
         },
-        {
-          test: /\.ts$/,
-          exclude: /node_modules/,
-          loader: 'ts-loader',
-          options: {
-            configFile: path.resolve(__dirname, 'tsconfig.json')
-          }
-        }
       ]
     },
     plugins: [
