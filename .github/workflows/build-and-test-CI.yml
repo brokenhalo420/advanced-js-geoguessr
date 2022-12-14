@@ -44,5 +44,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - run: sed -i "s|<google_maps_api_key>|${{ secrets.GOOGLE_MAPS_API_KEY }}|g" .env.production
       - run: npm ci
       - run: npm run build --if-present
