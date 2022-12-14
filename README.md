@@ -22,5 +22,5 @@ One game consists of 3 rounds.
 
 > The relationship between User and Score is one to many.
 <p>
-  <img src="./assets/geoguessr-db.pn" alt="Geoguessr Database Diagram"/>
+  <img src="./assets/geoguessr-db.png" alt="Geoguessr Database Diagram"/>
 </p>
