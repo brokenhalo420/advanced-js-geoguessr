@@ -5,4 +5,4 @@ class Score {
     }
 }
 
-module.exports({Score});
+module.exports = { Score };

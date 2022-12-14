@@ -1,5 +1,5 @@
 class User {
-    constructor(obj){
+    constructor(obj) {
         this.username = obj.username;
         this.email = obj.email;
         this.name = obj.name;
@@ -7,4 +7,4 @@ class User {
     }
 }
 
-module.exports({User});
+module.exports = { User };
