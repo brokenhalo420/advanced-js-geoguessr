@@ -1,4 +1,6 @@
 const sqlite3 = require("sqlite3");
+const User = require("../models/user").User;
+const Score = require("../models/score").Score;
 
 class DBContext {
     constructor(){
@@ -14,10 +16,18 @@ class DBContext {
         let query = `
             SELECT *
             FROM Users
-            WHERE Users.id == ${id}
+            WHERE Users.id = ?
         `;
+        let user;
+        this.connection.all(query,[id], (err, rows) => {
+            if (err) {
+                console.log(err.message);
+            };
 
-        this.connection.run(query);
+            user = new User(rows[0]);
+        });
+
+        return user;
     }
 
     getUsers() {
@@ -26,7 +36,13 @@ class DBContext {
             FROM Users
         `;
 
-        this.connection.run(query);
+        let users = [];
+
+        this.connection.all(query);
+    }
+
+    addUser() {
+
     }
 }
 

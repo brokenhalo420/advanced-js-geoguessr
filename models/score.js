@@ -1,7 +1,7 @@
 class Score {
-    constructor(timestamp, points) {
-        this.timestamp = timestamp;
-        this.points = points;
+    constructor(obj) {
+        this.timestamp = obj.timestamp;
+        this.points = obj.points;
     }
 }
 
