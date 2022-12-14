@@ -1,11 +1,10 @@
 import { Loader } from '@googlemaps/js-api-loader';
-import environment from './env/env-dev';
 
 import '../style.css'
 
 const root = document.getElementById('root')
 const loader = new Loader({
-  apiKey: environment.GOOGLE_MAPS_API_KEY,
+  apiKey: process.env.GOOGLE_MAPS_API_KEY,
   version: "weekly",
 });
 
