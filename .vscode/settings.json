@@ -1,0 +1,11 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "GeoGuessr",
+            "database": "${workspaceFolder:advanced-js-geoguessr}/db/geoguessr.db"
+        }
+    ]
+}
