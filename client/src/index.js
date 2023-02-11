@@ -92,7 +92,7 @@ const initialize = (google) => {
       lat: marker.getPosition().lat(),
       lng: marker.getPosition().lng(),
     }
-    const payload = { actual: eiffelTower, guess: guessPosition }
+    const payload = { userId: 1, actual: eiffelTower, guess: guessPosition }
     fetch(`${baseUrl}/guess`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
