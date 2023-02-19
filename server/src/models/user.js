@@ -1,7 +1,7 @@
 class User {
     constructor(obj) {
         this.id = obj.id
-        this.username = obj.username;
+        this.userName = obj.username;
         this.password = obj.password;
     }
 }
