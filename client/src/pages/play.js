@@ -1,4 +1,5 @@
 import { Loader } from "@googlemaps/js-api-loader"
+const io = require("socket.io-client")
 
 const LOCATIONS = [
   { name: "Eiffel Tower", lat: 48.8584, lng: 2.2945 },
@@ -8,6 +9,9 @@ const LOCATIONS = [
   { name: "La Sagrada Familia", lat: 41.4036, lng: 2.1744 },
 ]
 const scores = []
+let scoreModifier = 1
+const socketMsg = document.createElement("p")
+
 const baseUrl = process.env.SERVER_BASE_URL
 
 const loader = new Loader({
@@ -30,16 +34,22 @@ const getRandomCoord = () => {
 
 const initializeGame = async (root, round) => {
   root.innerHTML = ""
-  if(round === LOCATIONS.length + 1) {
-    const ggMessage = document.createElement('p')
+  const socket = io("http://localhost:8080")
+  socket.on("message", (msg) => {
+    console.log(msg)
+    socketMsg.innerHTML = msg
+    scoreModifier = 2
+  })
+  root.appendChild(socketMsg)
+  if (round === LOCATIONS.length + 1) {
+    const ggMessage = document.createElement("p")
     ggMessage.innerHTML = `Thanks for playing. Your scores: ${scores}`
     root.appendChild(ggMessage)
     return
-  }
-  else if(round > 1) {
-    const scoreMessage = document.createElement('p')
+  } else if (round > 1) {
+    const scoreMessage = document.createElement("p")
     scoreMessage.innerHTML = scores[round - 2]
-    root.appendChild(scoreMessage) 
+    root.appendChild(scoreMessage)
   }
   const google = await loader.load()
   const mapDiv = appendElWithId("map", root)
@@ -99,6 +109,7 @@ const initializeGame = async (root, round) => {
       userId: sessionStorage.getItem("userId"),
       actual: location,
       guess: guessPosition,
+      scoreModifier,
     }
     fetch(`${baseUrl}/guess`, {
       method: "POST",
@@ -107,9 +118,11 @@ const initializeGame = async (root, round) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        const score = `Location: ${LOCATIONS[round - 1]}. Distance: ${res.distance}. Score: ${res.score}`
+        const score = `Location: ${LOCATIONS[round - 1].name}. Distance: ${
+          res.distance
+        }. Score: ${res.score}`
         scores.push(score)
-        initializeGame(root,round + 1)
+        initializeGame(root, round + 1)
       })
   })
 }
