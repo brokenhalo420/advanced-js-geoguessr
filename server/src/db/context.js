@@ -94,6 +94,18 @@ class DBContext {
     })
   }
 
+  deleteUsers() {
+    const query = `
+        DELETE FROM Users
+        `
+
+    this.connection.run(query, (err) => {
+      if (err) {
+        console.log(err.message)
+      }
+    })
+  }
+
   getScores() {
     const query = "SELECT * FROM Scores;";
     return new Promise((resolve,reject) => {

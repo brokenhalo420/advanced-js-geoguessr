@@ -16,3 +16,17 @@ html, body {
   width: 100px;
   height: 30px;
 }
+
+input {
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 500px;
+  height: 20px;
+}
+
+button {
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 200px;
+  height:20px;
+}
